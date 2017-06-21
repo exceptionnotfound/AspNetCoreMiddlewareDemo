@@ -18,7 +18,7 @@ namespace AspNetCoreMiddlewareDemo.Middleware
         public async Task Invoke(HttpContext context)
         {
             await _next.Invoke(context);
-            context.Response.Headers.Add("Custom-Middleware-Value", "CustomValue");
+            context.Response.Headers.Add("Custom-Middleware-Value", DateTime.Now.ToString());
         }
     }
 }
