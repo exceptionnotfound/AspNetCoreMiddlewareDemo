@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 
 namespace AspNetCoreMiddlewareDemo.Middleware
 {
-    public class CustomHeaderMiddleware
+public class CustomHeaderMiddleware
+{
+    private RequestDelegate _next;
+
+    public CustomHeaderMiddleware(RequestDelegate next)
     {
-        private RequestDelegate _next;
-
-        public CustomHeaderMiddleware(RequestDelegate next)
-        {
-            _next = next;
-        }
-
-        public async Task Invoke(HttpContext context)
-        {
-            await _next.Invoke(context);
-            context.Response.Headers.Add("Custom-Middleware-Value", DateTime.Now.ToString());
-        }
+        _next = next;
     }
+
+    public async Task Invoke(HttpContext context)
+    {
+        await _next.Invoke(context);
+        context.Response.Headers.Add("Custom-Middleware-Value", DateTime.Now.ToString());
+    }
+}
 }

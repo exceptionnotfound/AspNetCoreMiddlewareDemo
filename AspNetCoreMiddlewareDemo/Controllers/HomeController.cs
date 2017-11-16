@@ -11,12 +11,12 @@ namespace AspNetCoreMiddlewareDemo.Controllers
         [AcceptVerbs("GET", "POST")]
         public IActionResult Index()
         {
-            return View();
+            return Ok();
         }
 
         public IActionResult Error()
         {
-            return View();
+            return NotFound();
         }
     }
 }
